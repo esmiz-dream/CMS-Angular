@@ -29,7 +29,6 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
 
       if(this.auth.isLoggedIn()){
-        
         return true;
       }
       else {
