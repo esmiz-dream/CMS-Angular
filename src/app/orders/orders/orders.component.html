@@ -1,0 +1,56 @@
+<div>
+    <h3><fa-icon [icon]="faUser"></fa-icon>Orders</h3>
+    <ul class="nav">
+        <li><a (click)="viewType('card')">Card View</a></li>
+        <li><a (click)="viewType('list')"> <fa-icon [icon]="faList"></fa-icon> List View</a></li>
+        <li><a (click)="viewType('map')"> <fa-icon [icon]="faMap"></fa-icon> Map View</a></li>
+        <li><a routerLink="add"> <fa-icon [icon]="faPlus"></fa-icon> New order</a></li>
+    </ul>
+</div>
+<hr>
+<div *ngIf="view==='card'" class="card-container">
+    <div class="card" *ngFor="let order of orders">
+        <div class="card-header">
+            <h5 class="card-title">{{order.product.name}}</h5>
+            <a routerLink="" class="edit-icon"> <fa-icon [icon]="faEdit"></fa-icon></a>
+        </div>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{order.customer.name}},</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{order.orderCode}}</h6>
+            <a routerLink="orders/orders" class="card-link">View Orders</a>
+        </div>
+    </div>
+</div>
+ 
+
+<div *ngIf="view==='list'" class="list-view">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Orderd By</th>
+                <th scope="col">Order Code</th>
+                <th scope="col">Product</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let order of orders;let i=index">
+                <th scope="row">{{i}}</th>
+                <td>
+                    {{order.customer.name}}
+                </td>
+                <td>
+                    {{order.orderCode}}
+                </td>
+                <td>
+                    {{order.product.name}}
+                </td>
+                <td>
+                    <a type="submit">checkout</a>
+                    <a routerLink="orders/delete"><fa-icon [icon]="faTrash"></fa-icon></a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

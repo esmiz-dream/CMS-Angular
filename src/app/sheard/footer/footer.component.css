@@ -1,0 +1,13 @@
+#footer{
+    left: 0;
+    bottom: 0;
+    color: black;
+}
+
+.footer{
+    color: black;
+    padding-top: 70px;
+}
+.footer p, h1,h2,h3{
+    color: black;
+}

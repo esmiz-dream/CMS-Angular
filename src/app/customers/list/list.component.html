@@ -1,0 +1,106 @@
+<div>
+    <h3><fa-icon [icon]="faUser"></fa-icon>Customers</h3>
+    <ul class="nav">
+        <li><a (click)="viewType('card')">Card View</a></li>
+        <li><a (click)="viewType('list')"> <fa-icon [icon]="faList"></fa-icon> List View</a></li>
+        <li><a (click)="viewType('map')"> <fa-icon [icon]="faMap"></fa-icon> Map View</a></li>
+        <li><a routerLink="add"> <fa-icon [icon]="faPlus"></fa-icon> New Customer</a></li>
+    </ul>
+</div>
+<hr>
+<div *ngIf="view==='card'" class="card-container">
+    <div class="card" *ngFor="let customer of customers">
+        <div class="card-header">
+            <h5 class="card-title">{{customer.name}}</h5>
+            <a routerLink="" class="edit-icon"> <fa-icon [icon]="faEdit"></fa-icon></a>
+        </div>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{customer.country}},</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{customer.Address}}</h6>
+
+            <a routerLink="orders/orders" class="card-link">View Orders</a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="view==='list'" class="list-view">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Country</th>
+                <th scope="col">Address</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let customer of customers;let i=index">
+                    <th scope="row">{{i}}</th>
+                    <td>
+                        <div *ngIf="!isEdit || editableId!==customer.id">
+                            {{customer.name}}
+                        </div>
+
+                        <div *ngIf="isEdit && editableId==customer.id">
+                            <input type="text" required #name="ngModel" ngModel name="name" class="form-control"
+                                placeholder="your name" [(ngModel)]="customer.name">
+                            <span class="err-msg" *ngIf="name.invalid && name.touched">Name can not be empty</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="!isEdit || editableId!==customer.id">
+                            {{customer.email}}
+                        </div>
+
+                        <div *ngIf="isEdit && editableId==customer.id">
+                            <input email required [(ngModel)]="customer.email" #email="ngModel" ngModel name="email"
+                                class="form-control" placeholder="email">
+                            <span class="err-msg" *ngIf="email.invalid && email.touched">Please enter valid email</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="!isEdit || editableId!==customer.id">
+                            {{customer.phone}}
+                        </div>
+
+                        <div *ngIf="isEdit && editableId==customer.id">
+                            <input type="number" [(ngModel)]="customer.phone" required #phone="ngModel" ngModel
+                                name="phone" class="form-control" placeholder="phone">
+                            <span class="err-msg" *ngIf="phone.invalid && phone.touched">Please enter valid phone
+                                number</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="!isEdit || editableId!==customer.id">
+                            {{customer.country}}
+                        </div>
+
+                        <div *ngIf="isEdit && editableId==customer.id">
+                            <input type="text" ngModel [(ngModel)]="customer.country" #country="ngModel" name="country"
+                                class="form-control" placeholder="country">
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="!isEdit || editableId!==customer.id">
+                            {{customer.address}}
+                        </div>
+
+                        <div *ngIf="isEdit && editableId==customer.id">
+                            <input type="text" ngModel [(ngModel)]="customer.address" #address="ngModel" name="address"
+                                class="form-control" placeholder="address">
+                        </div>
+                    </td>               
+                <td>
+                    <a *ngIf="!isEdit || editableId!==customer.id" (click)="onEdit(customer.id)"><fa-icon
+                            [icon]="faEdit"></fa-icon></a>
+                    <button type="submit"  *ngIf="isEdit && editableId===customer.id">Save</button>
+                    <a routerLink="customers/delete"><fa-icon [icon]="faTrash"></fa-icon></a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

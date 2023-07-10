@@ -1,0 +1,40 @@
+<div class="add-customer">
+    <h3> <fa-icon [icon]="faUser"></fa-icon> New Customer</h3>
+    <form #addCustomerForm="ngForm" (ngSubmit)="addCustomer(addCustomerForm.value,addCustomerForm)">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input type="text" required #name="ngModel" ngModel name="name" class="form-control"
+                placeholder="your name">
+            <span class="err-msg" *ngIf="name.invalid && name.touched">Name can not be empty</span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email </label>
+            <input email required #email="ngModel" ngModel name="email" class="form-control" placeholder="email">
+            <span class="err-msg" *ngIf="email.invalid && email.touched">Please enter valid email</span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Password</label>
+            <input type="password" minlength="6" required #password="ngModel" ngModel name="password"
+                class="form-control" placeholder="password">
+            <span class="err-msg" *ngIf="password.invalid && password.touched">Password length must be atleast 6 characters </span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Country</label>
+            <input type="text" ngModel #country="ngModel" name="country" class="form-control" placeholder="country">
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Address</label>
+            <input type="text" ngModel #address="ngModel" name="address" class="form-control" placeholder="address">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Phone</label>
+            <input type="number" required #phone="ngModel" ngModel name="phone" class="form-control"
+                placeholder="phone">
+            <span  class="err-msg" *ngIf="phone.invalid && phone.touched">Please enter valid phone number</span>
+        </div>
+        <div class="mb-3">
+            <button [disabled]="addCustomerForm.invalid" type="submit" >Add Customer</button>
+        </div>
+    </form>
+</div>

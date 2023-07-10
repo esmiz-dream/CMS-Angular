@@ -1,0 +1,56 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 15px;
+}
+.card-header {
+  background-color: blue;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card {
+  width: 25rem;
+}
+.nav {
+  list-style-type: none;
+  padding-left: 50px;
+}
+.nav li {
+  padding-right: 2rem;
+}
+
+div h3{
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 8px;
+}
+.edit-icon {
+  text-decoration: none;
+  color: white;
+}
+
+.nav a {
+  cursor: pointer;
+}
+
+.list-view, .card-container {
+  padding-left: 50px;
+}
+.list-view{
+    max-width: 1000px;
+}
+
+.err-msg{
+  color: red;
+}
+
+td a{
+  cursor: pointer;
+  color: blue;
+  padding-right: 10px;
+}

@@ -1,0 +1,18 @@
+.add-customer{
+    width: 30%;
+}
+
+.add-customer{
+    padding-left: 5%;
+    padding-top: 20px;
+}
+
+.err-msg::before{
+    content: "\a";
+    white-space: pre;
+}
+
+.err-msg{
+    color: red;
+}
+

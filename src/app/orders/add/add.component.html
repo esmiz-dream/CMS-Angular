@@ -1,0 +1,27 @@
+<div class="add-order">
+    <h3>New Order</h3>
+    <div class="add-order-form">
+        <form #addOrderForm="ngForm" (ngSubmit)="onSubmit(addOrderForm.value,addOrderForm)" >
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Order Code</label>
+            <input type="text" required #orderCode="ngModel" [disabled]="true" [(ngModel)]="ranCode" [value]="ranCode"  ngModel name="orderCode" class="form-control"
+                 >
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Customer</label>
+            <ng-select [(ngModel)]="selectedCust" #customerId required name="customerId">
+                <ng-option *ngFor="let cust of customers"  [value]="cust.id">{{cust.name}}</ng-option>
+            </ng-select>
+            <!-- <span class="err-msg" *ngIf="customer.invalid && customer.touched">Name can not be empty</span> -->
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Products</label>
+            <ng-select [(ngModel)]="selectedPro" #productId required   name="productId">
+                <ng-option *ngFor="let product of products"  [value]="product.id">{{product.name}}</ng-option>
+            </ng-select>
+            <!-- <span class="err-msg" *ngIf="customer.invalid && customer.touched">Name can not be empty</span> -->
+        </div>
+        <button type="submit" [disabled]="addOrderForm.invalid" class="btn btn-primary">Order</button>
+    </form>
+    </div>
+</div>

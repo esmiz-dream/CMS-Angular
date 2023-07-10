@@ -1,0 +1,10 @@
+.login{
+    max-width: 600px;
+    min-width: 400px;
+    margin: auto;
+    padding-top: 100px;
+}
+
+#submit{
+    width: 100%;
+}

@@ -1,0 +1,55 @@
+<div>
+    <h3><fa-icon [icon]="faproduct"></fa-icon>Products</h3>
+    <ul class="nav">
+        <li><a (click)="viewType('card')">Card View</a></li>
+        <li><a (click)="viewType('list')"> <fa-icon [icon]="faList"></fa-icon> List View</a></li>
+        <li><a (click)="viewType('map')"> <fa-icon [icon]="faMap"></fa-icon> Map View</a></li>
+        <li><a routerLink="add"> <fa-icon [icon]="faPlus"></fa-icon> New Product</a></li>
+    </ul>
+</div>
+
+<hr>
+<div *ngIf="view==='card'" class="card-container">
+    <div class="card" *ngFor="let product of products">
+        <div class="card-header">
+            <h5 class="card-title">{{product.name}}</h5>
+            <a routerLink="" class="edit-icon"> <fa-icon [icon]="faEdit"></fa-icon></a>
+        </div>
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{product.name}},</h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{product.price}}</h6>
+
+            <a routerLink="products/products" class="card-link">View product</a>
+        </div>
+    </div>
+</div>
+ 
+
+<div *ngIf="view==='list'" class="list-view">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let product of products;let i=index">
+                <th scope="row">{{i}}</th>
+                <td>
+                    {{product.name}}
+                </td>
+               
+                <td>
+                    {{product.price}}
+                </td>
+                <td>
+                    <a type="submit">order</a>
+                    <a routerLink="products/delete"><fa-icon [icon]="faTrash"></fa-icon></a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
